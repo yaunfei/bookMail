@@ -4,7 +4,7 @@
             <image class="header-img" src="https://user.kongfz.com/data/member_pic/1897/8521897.jpg" />
             <text>登录、注册</text>
         </view>
-        <view class="my-order clearfix">
+        <view class="my-order ">
             <sub-title
                 :titleFontSize=15
                 :titleFontWeight=300
@@ -17,14 +17,14 @@
                     查看全部
                 </template>
             </sub-title>
+            <view style="height: 2px;border-bottom: 1px solid rgb(246 236 236);"></view>
             <view class="order-item">
-                <view>待付款</view>
-                <view>待发货</view>
-                <view>待收货</view>
-                <view>待评价</view>
-                <view>待确认</view>
-                <view>退货退款</view>
-                <view>成功完成</view>
+                <view v-for="(item, index) in orderItem"
+                    :key="index"
+                    class="item-info">
+                    <image class="order-img" :src="item.imgUrl"/>
+                    <view>{{item.desc}}</view>
+                </view>
             </view>
         </view>
         <view class="my-info">
@@ -36,6 +36,34 @@
 
 <script lang="ts">
 import subTitle from "@/components/common/sub-title.vue";
+import payIcon from "@/assets/order/pay.png";
+import goodsIcon from "@/assets/order/goods.png";
+import deliverIcon from "@/assets/order/deliver.png";
+import commentIcon from "@/assets/order/comment.png";
+import refundIcon from "@/assets/order/refund.png";
+
+const orderItem = [
+    {
+        imgUrl: payIcon,
+        desc: "待发货",
+    },
+    {
+        imgUrl: goodsIcon,
+        desc: "待收货",
+    },
+    {
+        imgUrl: deliverIcon,
+        desc: "待评价",
+    },
+    {
+        imgUrl: commentIcon,
+        desc: "待确认",
+    },
+    {
+        imgUrl: refundIcon,
+        desc: "退货退款",
+    },
+]
 
 export default {
     name: "my",
@@ -47,7 +75,8 @@ export default {
             console.log(123)
         }
         return {
-            handle
+            handle,
+            orderItem,
         }
     }
 
@@ -75,7 +104,24 @@ export default {
         border-radius: 20px;
         .order-item {
             display: flex;
-            padding: 0 20px;
+            margin: 30rpx 0;
+            .item-info {
+                width: 20%;
+                text-align: center;
+                .order-img {
+                    width: 60px;
+                    height: 60px;
+                }
+                :last-child {
+                    font-size: 26px;
+                }
+            }
+            &:before {
+                content: '';
+                width: 2%;
+                height: 20rpx;
+                border-top: 1px solid rgb(246 236 236);
+            }
         }
     }
 }
