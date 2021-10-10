@@ -39,6 +39,7 @@
 </template>
 
 <script lang="ts">
+import { useStore } from "@/store";
 import homeSwiper from "@/components/home/swiper.vue";
 import optionClassfiy from "@/components/home/options-classfiy.vue";
 import optionActivity from "@/components/home/options-activity.vue";
@@ -59,7 +60,8 @@ export default {
         subTitle,
     },
     setup() {
-        
+        const store = useStore()
+        console.log(store.state.cartCount)
     }
 }
 </script>

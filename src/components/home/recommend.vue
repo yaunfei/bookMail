@@ -114,12 +114,4 @@ export default {
         }
     }
 }
-
-/*清楚浮动*/
-.clearfix:after {
-    content: "\20";
-    display: block;
-    height: 0;
-    clear: both;
-}
 </style>
