@@ -47,7 +47,6 @@ export default {
         color:#856d49;
     }
     .product-info {
-        // position: relative;
         line-height: 80px;
         .product-price {
             float: left;
@@ -55,13 +54,10 @@ export default {
         }
         .product-cover {
             float: right;
-            // position: absolute;
-            // right: 9rpx;
-            // top: 20rpx;
             font-size: 24px;
-            width: 80px;
-            height: 42px;
-            line-height: 42px;
+            width: 90px;
+            height: 45px;
+            line-height: 45px;
             text-align: center;
             margin-top: 20px;
             background: #f7f7f7;

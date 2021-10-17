@@ -50,6 +50,7 @@ import deliverIcon from "@/assets/order/deliver.png";
 import commentIcon from "@/assets/order/comment.png";
 import refundIcon from "@/assets/order/refund.png";
 import localIcon from "@/assets/order/location.png";
+import { useStore } from "@/store";
 
 const orderItem = [
     {
@@ -83,6 +84,8 @@ export default {
         const handle = () => {
             console.log(123)
         }
+        const store = useStore()
+        console.log('---', store.state.cartCount)
         return {
             handle,
             localIcon,

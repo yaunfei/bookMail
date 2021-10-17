@@ -2,6 +2,7 @@ export default {
   pages: [
     
     'pages/home/home',
+    'pages/cart/cart',
     'pages/my/my',
     'pages/detail/detail',
   ],
@@ -16,6 +17,12 @@ export default {
         text: "首页",
         iconPath: "assets/tabBar/home.png",
         selectedIconPath: "assets/tabBar/home-fill.png",
+      },
+      {
+        pagePath: "pages/cart/cart",
+        text: "购物车",
+        iconPath: "assets/tabBar/cart.png",
+        selectedIconPath: "assets/tabBar/cart-fill.png",
       },
       {
         pagePath: "pages/my/my",
