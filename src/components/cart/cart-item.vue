@@ -8,10 +8,14 @@
       />
       <view class="item-info">
         <view style="font-size: 16px">他们幸福</view>
-        <view class="item-quality">九五品</view>
+        <view class="item-quality quality">九五品</view>
         <view class="item-buttom">
           <text>￥ 12.00</text>
-          <text>1</text>
+          <view>
+            <view class="leftIcon operate">-</view>
+            <view class="number">2</view>
+            <view class="rightIcon operate">+</view>
+          </view>
         </view>
       </view>
     </view>
@@ -25,10 +29,13 @@ export default {
 </script>
 
 <style lang="less">
+@import "~@/common/styles/variables.less";
+
 .co-cart-item {
   .cart-item {
     display: flex;
     flex-wrap: nowrap;
+    align-items: center;
     width: 95vw;
     height: 20vh;
     margin: 0 auto;
@@ -47,14 +54,7 @@ export default {
       height: 200px;
       margin: 0 20px;
       .item-quality {
-        font-size: 24px;
-        width: 90px;
-        height: 45px;
-        line-height: 45px;
-        text-align: center;
         margin-top: 50px;
-        background: #f7f7f7;
-        border-radius: 12px;
       }
       .item-buttom {
         margin-top: 20px;
@@ -65,6 +65,23 @@ export default {
         }
         :last-child {
           float: right;
+          .number {
+            display: inline-block;
+            width: 50px;
+            height: 35px;
+            line-height: 35px;
+            text-align: center;
+            border-top: 4px solid @backColor;
+            border-bottom: 4px solid @backColor;
+          }
+          .leftIcon {
+            border-top-left-radius: 10px;
+            border-bottom-left-radius: 10px;
+          }
+          .rightIcon {
+            border-top-right-radius: 10px;
+            border-bottom-right-radius: 10px;
+          }
         }
       }
     }
@@ -82,6 +99,14 @@ export default {
     background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACgAAAAoCAYAAACM/rhtAAAAAXNSR0IArs4c6QAAA8dJREFUWAntmE9IG0EUxvPHP2igpLc0tL1b6LFQbIV66KWWgpdcIoKg3kqhBS+CB8FLoQXxpoIQzCWXgrReUrBgGwq9taB3W2xuDZUoamP6feObYZLsaqLZTQ4OzM7s25n3/XZmdmffBgJX6XIjELxo93Q6fX1/f3+oXC4/ho/byHHU4/QXDAZ3UTDvoJ7t7e39kEwm//Bao6lhwMXFxWGAPIfQAHJHnYL/0G4TsAuTk5Pv6uyjmtUNuLy8/ODk5OQ14PrZE2JHKDaQ11Dfgn03Go1y1AKFQiEOG0f0Dk6fIQ+i3sVrsOdCodDU+Pj4F56fl84FzGQyYQi+gcALcZZHORuJRNIjIyN/zxPg9dXV1WvFYjGJ6gxyjDaAzuOGXiUSiRLP3dKZgCsrK9Hj4+MM4LjODpHnenp63o6OjhbdHJ5lT6VSkYODg5doM43cDchsZ2dnYmxsrODWzxVQ4HKA60PnPKZleGJi4qubo0bsS0tL97FcuBZjgNwGZL8bZMjJMadVRq4PDr4D7l6z4KhHX/SJ6g8OALWo6cTiCChrjtOaB+AQHP5y6nwZG30C8gk1uISo6eSvZor5tJZKpc9ofAgHj5o5ck4AMt2fcK07HA4/rH66a0aQrxJxNOc1HHVEY451S5unKlUAykuY77k8n1Zp43khWpzqfjLYghWAaMAdgmn2oq+S0+6NHUVrlr0sBuXEAHJvhWUAD8URX8Lqqo8HalKbDMKi1A0g3vRPYeHeulHvDqE8NOkgmtw6O4RFeTaAOONrhWnttGjJUWtrloANeItIGOatlqBVaisWctiAcRqwSNUXCet+J0tbsVDfAOKiMupPJr/hqKe1NQttBhBTW6Zhb2+vZneh3Y+ktTULNQ0g6r9pwDZ3g2UrkqWtWMhgA6q1B3oz/35DWtrmObABdwiE+ednekuSpa1YCGEDfhQqxhCtSkobI5nVAAYQW817GBl9DTKG0A38KkVzkAwMU7WuAZS4dRPD3CUBjm7jS0lNakNs046hDSApMLQLQjPDAEfqnheixYjPZlC6FYAMqgGZw5WYRF+qkdcH0WIAlasO7CsACYLP/CkBmubnuNdwosEw1NY2sjWAjAlwJ/No0c3QEA5umtZNrtC3hJ+Mkeer4xHK1QDSyIgfHfiox+Bg3QtIgVunBrWoSe3q5AjI3xGM+NFxGx3uAvIbHDZtuumLPumbGtRy+wVy5odBW//60EPd1j+PNCTLtv39ZkOyLrFz+/3ArAZlaCjRFwMcxhBOv4B/wp7lPm9vX9W+rs69HIH/zq7nkEg8hJAAAAAASUVORK5CYII=)
       no-repeat;
     background-size: 100%;
+  }
+  .operate {
+    display: inline-block;
+    width: 35px;
+    height: 35px;
+    line-height: 35px;
+    text-align: center;
+    border: 4px solid @backColor;
   }
 }
 </style>

@@ -7,7 +7,7 @@
                 <text style="font-size: 16px">￥</text>
                 <text style="font-size: 22px">{{data.price}}</text>
             </view>
-            <view class="product-cover">{{data.cover}}</view>
+            <view class="product-cover quality">{{data.cover}}</view>
         </view>
         <view class="product-cns">{{data.cns}}</view>
     </view>
@@ -54,14 +54,7 @@ export default {
         }
         .product-cover {
             float: right;
-            font-size: 24px;
-            width: 90px;
-            height: 45px;
-            line-height: 45px;
-            text-align: center;
             margin-top: 20px;
-            background: #f7f7f7;
-            border-radius: 10px;
         }
     }
     .product-cns {

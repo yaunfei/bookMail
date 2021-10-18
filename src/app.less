@@ -1,12 +1,25 @@
+@import "@/common/styles/variables.less";
+
 ::-webkit-scrollbar {
-    /*隐藏滚轮*/
-    display: none;
+  /*隐藏滚轮*/
+  display: none;
 }
 
 /*清楚浮动*/
 .clearfix:after {
-    content: "\20";
-    display: block;
-    height: 0;
-    clear: both;
+  content: "\20";
+  display: block;
+  height: 0;
+  clear: both;
+}
+
+// 品相背景框
+.quality {
+  font-size: 24px;
+  width: 90px;
+  height: 45px;
+  line-height: 45px;
+  text-align: center;
+  background: @backColor;
+  border-radius: 12px;
 }

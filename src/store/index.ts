@@ -32,10 +32,8 @@ export const store = createStore<State>({
         ? state.cartList.push(playload)
         : newBookArr.length === 0
         ? state.cartList.push(playload)
-        : state.cartList.forEach((item, index) => {
-            state.cartList[index].id === newBookArr[0].id
-              ? (state.cartList[index].cartCount += 1)
-              : null;
+        : state.cartList.find((item, index) => {
+            item.id === newBookArr[0].id ? (item.cartCount += 1) : null;
           });
       console.log(state.cartList);
     },
