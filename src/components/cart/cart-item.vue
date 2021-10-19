@@ -7,14 +7,14 @@
         src="https://www.kfzimg.com/sw/kfz-cos/kfzimg/abadbcfb/704ca01a6cd94977_n.jpg"
       />
       <view class="item-info">
-        <view style="font-size: 16px">他们幸福</view>
-        <view class="item-quality quality">九五品</view>
+        <view style="font-size: 16px">{{ cartItem.title }}</view>
+        <view class="item-quality quality">{{ cartItem.quality }}</view>
         <view class="item-buttom">
-          <text>￥ 12.00</text>
+          <text>￥ {{ cartItem.price }}</text>
           <view>
-            <view class="leftIcon operate">-</view>
-            <view class="number">2</view>
-            <view class="rightIcon operate">+</view>
+            <view class="leftIcon operate" @tap="$emit('decrease', cartItem.id)">-</view>
+            <view class="number">{{ cartItem.cartCount }}</view>
+            <view class="rightIcon operate" @tap="$emit('increase', cartItem.id)">+</view>
           </view>
         </view>
       </view>
@@ -25,6 +25,12 @@
 <script lang="ts">
 export default {
   name: "cartItem",
+  props: {
+    cartItem: {
+      type: Object,
+      default: () => {},
+    }
+  }
 };
 </script>
 
@@ -32,6 +38,7 @@ export default {
 @import "~@/common/styles/variables.less";
 
 .co-cart-item {
+  padding-top: 20px;
   .cart-item {
     display: flex;
     flex-wrap: nowrap;
