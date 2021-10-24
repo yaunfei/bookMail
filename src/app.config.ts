@@ -1,12 +1,13 @@
 export default {
   pages: [
-    
-    'pages/home/home',
-    'pages/cart/cart',
-    'pages/my/my',
-    'pages/detail/detail',
+    "pages/home/home",
+    "pages/categroy/categroy",
+    "pages/cart/cart",
+    "pages/my/my",
+    "pages/detail/detail",
+    "pages/list/list",
   ],
-  tabBar:{
+  tabBar: {
     color: "#b0b1b8",
     selectedColor: "#f01d24",
     borderStyle: "white",
@@ -19,6 +20,12 @@ export default {
         selectedIconPath: "assets/tabBar/home-fill.png",
       },
       {
+        pagePath: "pages/categroy/categroy",
+        text: "分类",
+        iconPath: "assets/tabBar/all.png",
+        selectedIconPath: "assets/tabBar/all-fill.png",
+      },
+      {
         pagePath: "pages/cart/cart",
         text: "购物车",
         iconPath: "assets/tabBar/cart.png",
@@ -29,13 +36,13 @@ export default {
         text: "我的",
         iconPath: "assets/tabBar/my.png",
         selectedIconPath: "assets/tabBar/my-fill.png",
-      }
-    ]
+      },
+    ],
   },
   window: {
-    backgroundTextStyle: 'light',
-    navigationBarBackgroundColor: '#fff',
-    navigationBarTitleText: 'WeChat',
-    navigationBarTextStyle: 'black'
-  }
-}
+    backgroundTextStyle: "light",
+    navigationBarBackgroundColor: "#fff",
+    navigationBarTitleText: "WeChat",
+    navigationBarTextStyle: "black",
+  },
+};

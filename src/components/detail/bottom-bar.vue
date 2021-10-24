@@ -6,8 +6,12 @@
         <view>{{ item.title }}</view>
       </view>
       <view class="item-info">
-        <text class="item-text item-text-left" @tap="$emit('addCart')">加入购物车</text>
-        <text class="item-text item-text-right"  @tap="$emit('buy')">立即购买</text>
+        <text class="item-text item-text-left" @tap="$emit('addCart')"
+          >加入购物车</text
+        >
+        <text class="item-text item-text-right" @tap="$emit('buy')"
+          >立即购买</text
+        >
       </view>
     </view>
   </view>

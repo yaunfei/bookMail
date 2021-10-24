@@ -77,6 +77,26 @@ const ownerList = [
   },
 ];
 
+const detailitem = {
+  id: 13,
+  imgurl:
+    "https://www.kfzimg.com/sw/kfz-cos/kfzimg/abadbcfb/704ca01a6cd94977_n.jpg",
+  title: "他们幸福",
+  quality: "九五品",
+  price: 12,
+  cartCount: 2,
+};
+
+const detailitem1 = {
+  id: 40,
+  imgurl:
+    "https://www.kfzimg.com/sw/kfz-cos/kfzimg/abadbcfb/704ca01a6cd94977_n.jpg",
+  title: "他们幸福",
+  quality: "九五品",
+  price: 12,
+  cartCount: 2,
+};
+
 export default {
   name: "detail",
   components: {
@@ -96,10 +116,6 @@ export default {
     const store = useStore();
 
     onMounted(() => {});
-
-    const detailCount = computed(() => {
-      return store.state.cartList.cartCount;
-    });
 
     // srcol滚动时回调
     const handleScroll = (e) => {
@@ -149,8 +165,7 @@ export default {
     const addCart = () => {
       console.log("addCart");
       store.commit(ADD_CART, {
-        id: 1,
-        cartCount: 1 ,
+        ...detailitem,
       });
     };
 
@@ -158,8 +173,7 @@ export default {
     const buy = () => {
       console.log("buy");
       store.commit(ADD_CART, {
-        id: 12,
-        cartCount: 100 ,
+        ...detailitem1,
       });
     };
 

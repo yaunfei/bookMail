@@ -14,36 +14,40 @@
 import { useStore } from "@/store";
 import cartItem from "@/components/cart/cart-item.vue";
 import { ADD_CART, SUBSTRATE_CART } from "@/store/mutation-types";
+import { reactive, toRefs } from "@vue/reactivity";
+import { onMounted } from "@vue/runtime-core";
 
-const cartList = [
-  {
-    id: 13,
-    imgUrl:
-      "https://www.kfzimg.com/sw/kfz-cos/kfzimg/abadbcfb/704ca01a6cd94977_n.jpg",
-    title: "他们幸福",
-    quality: "九五品",
-    price: 12,
-    cartCount: 2,
-  },
-  {
-    id: 24,
-    imgUrl:
-      "https://www.kfzimg.com/sw/kfz-cos/kfzimg/abadbcfb/704ca01a6cd94977_n.jpg",
-    title: "他们幸福",
-    quality: "九五品",
-    price: 13,
-    cartCount: 2,
-  },
-  {
-    id: 45,
-    imgUrl:
-      "https://www.kfzimg.com/sw/kfz-cos/kfzimg/abadbcfb/704ca01a6cd94977_n.jpg",
-    title: "他们幸福",
-    quality: "九五品",
-    price: 16,
-    cartCount: 2,
-  },
-];
+// #region
+// const cartList = [
+//   {
+//     id: 13,
+//     imgUrl:
+//       "https://www.kfzimg.com/sw/kfz-cos/kfzimg/abadbcfb/704ca01a6cd94977_n.jpg",
+//     title: "他们幸福",
+//     quality: "九五品",
+//     price: 12,
+//     cartCount: 2,
+//   },
+//   {
+//     id: 24,
+//     imgUrl:
+//       "https://www.kfzimg.com/sw/kfz-cos/kfzimg/abadbcfb/704ca01a6cd94977_n.jpg",
+//     title: "他们幸福",
+//     quality: "九五品",
+//     price: 13,
+//     cartCount: 2,
+//   },
+//   {
+//     id: 45,
+//     imgUrl:
+//       "https://www.kfzimg.com/sw/kfz-cos/kfzimg/abadbcfb/704ca01a6cd94977_n.jpg",
+//     title: "他们幸福",
+//     quality: "九五品",
+//     price: 16,
+//     cartCount: 2,
+//   },
+// ];
+// #endregion
 
 export default {
   name: "cart",
@@ -52,6 +56,15 @@ export default {
   },
   setup() {
     const store = useStore();
+
+    const state = reactive({
+      cartList: [] as any,
+    });
+
+    onMounted(() => {
+      state.cartList = store.state.cartList;
+      console.log(state.cartList);
+    });
 
     const decrease = (id) => {
       console.log("substrate_cart", id);
@@ -69,9 +82,10 @@ export default {
     };
 
     return {
-      cartList,
+      ...toRefs(state), // 转为普通对象, 这个对象的数据有响应式
       decrease,
       increase,
+      state,
     };
   },
 };

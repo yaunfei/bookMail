@@ -38,7 +38,7 @@ export const store = createStore<State>({
     },
     [SUBSTRATE_CART](state: object | any, { id }: object | any) {
       state.cartList?.find((item, index) => {
-        item.id === id ? (item.cartCount -= 1) : null;
+        item.id === id && item.cartCount > 0 ? (item.cartCount -= 1) : null;
       });
       console.log(state.cartList);
     },

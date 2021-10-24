@@ -12,9 +12,15 @@
         <view class="item-buttom">
           <text>￥ {{ cartItem.price }}</text>
           <view>
-            <view class="leftIcon operate" @tap="$emit('decrease', cartItem.id)">-</view>
+            <view class="leftIcon operate" @tap="$emit('decrease', cartItem.id)"
+              >-</view
+            >
             <view class="number">{{ cartItem.cartCount }}</view>
-            <view class="rightIcon operate" @tap="$emit('increase', cartItem.id)">+</view>
+            <view
+              class="rightIcon operate"
+              @tap="$emit('increase', cartItem.id)"
+              >+</view
+            >
           </view>
         </view>
       </view>
@@ -29,8 +35,8 @@ export default {
     cartItem: {
       type: Object,
       default: () => {},
-    }
-  }
+    },
+  },
 };
 </script>
 
