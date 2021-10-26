@@ -155,7 +155,7 @@ export default {
 
     const goList = () => {
       Taro.navigateTo({
-        url: "pages/list/list",
+        url: "/pages/list/list",
       });
     };
 
