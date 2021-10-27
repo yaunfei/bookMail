@@ -181,6 +181,7 @@ export default {
     height: @categoryLeftHeight;
     background-color: #f8f8f8;
     .item {
+      position: relative;
       height: 80px;
       line-height: 80px;
       text-align: center;
@@ -188,7 +189,6 @@ export default {
         font-size: 32px;
         display: inline-block;
         width: @categoryLeftWidth;
-        border-left: 8px solid transparent;
       }
     }
   }
@@ -215,7 +215,16 @@ export default {
 .active {
   font-size: 36px;
   color: #9e100e;
-  border-left: 8px solid #9e100e !important;
   background-color: #fff;
+  &::before {
+    position: absolute;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    content: "";
+    width: 8rpx;
+    height: 36rpx;
+    background-color: #9e100e;
+  }
 }
 </style>

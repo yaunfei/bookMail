@@ -1,15 +1,13 @@
 <template>
   <view class="co-list-item">
-    <image
-      class="img-item"
-      src="https://booklibimg.kfzimg.com/data/book_lib_img_v2/user/2/8770/87706466f375e0cc015f4eb633f8e3b1_0_2_140_140.jpg"
-    ></image>
+    <image class="img-item" :src="itemInfo?.imgItemImg"></image>
     <view class="item-info">
-      <view class="title">法学导论 第二版</view>
-      <view class="sub-title">卓泽渊 著</view>
+      <view class="title">{{ itemInfo?.title }}</view>
+      <view class="sub-title">{{ itemInfo?.subTitle }}</view>
       <view class="buttom-info">
-        <text class="price">￥8.30</text>
-        <image class="img-cart" :src="cartIcon"></image>
+        <text class="price">￥{{ itemInfo?.price }}</text>
+        <!--  .stop 阻止单击事件继续传播  -->
+        <image class="img-cart" :src="cartIcon" @tap.stop="$emit('addCart')"></image>
       </view>
     </view>
   </view>
@@ -20,6 +18,12 @@ import cartIcon from "@/assets/tabBar/cart.png";
 
 export default {
   name: "list-item",
+  props: {
+    itemInfo: {
+      type: Object,
+      default: () => {},
+    },
+  },
   setup() {
     return {
       cartIcon,
@@ -61,7 +65,7 @@ export default {
     }
     .buttom-info {
       margin-top: 60px;
-      .prcie {
+      .price {
         float: left;
         font-size: 32px;
         color: red;
@@ -70,6 +74,9 @@ export default {
         float: right;
         width: 50px;
         height: 50px;
+        padding: 6px;
+        border-radius: 50%;
+        background-color: #eaeaea;
       }
     }
   }
