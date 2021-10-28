@@ -19,10 +19,13 @@
 
 <script lang="ts">
 import Taro from "@tarojs/taro";
+import { useStore } from "@/store";
+import { ADD_CART } from "@/store/mutation-types";
 import listItem from "@/components/list/list-item.vue";
 
 const list = [
   {
+    id: 34,
     imgItemImg:
       "https://booklibimg.kfzimg.com/data/book_lib_img_v2/user/2/8770/87706466f375e0cc015f4eb633f8e3b1_0_2_140_140.jpg",
     title: "法学导论 第二版",
@@ -30,6 +33,7 @@ const list = [
     price: "8.30",
   },
   {
+    id: 45,
     imgItemImg:
       "https://booklibimg.kfzimg.com/data/book_lib_img_v2/user/2/8770/87706466f375e0cc015f4eb633f8e3b1_0_2_140_140.jpg",
     title: "法学导论 第二版",
@@ -37,6 +41,7 @@ const list = [
     price: "8.30",
   },
   {
+    id: 89,
     imgItemImg:
       "https://booklibimg.kfzimg.com/data/book_lib_img_v2/user/2/8770/87706466f375e0cc015f4eb633f8e3b1_0_2_140_140.jpg",
     title: "法学导论 第二版",
@@ -44,6 +49,7 @@ const list = [
     price: "8.30",
   },
   {
+    id: 32,
     imgItemImg:
       "https://booklibimg.kfzimg.com/data/book_lib_img_v2/user/2/8770/87706466f375e0cc015f4eb633f8e3b1_0_2_140_140.jpg",
     title: "法学导论 第二版",
@@ -51,6 +57,7 @@ const list = [
     price: "8.30",
   },
   {
+    id: 12,
     imgItemImg:
       "https://booklibimg.kfzimg.com/data/book_lib_img_v2/user/2/8770/87706466f375e0cc015f4eb633f8e3b1_0_2_140_140.jpg",
     title: "法学导论 第二版",
@@ -65,14 +72,19 @@ export default {
     listItem,
   },
   setup() {
+    const store = useStore();
+
     const getDetail = () => {
       Taro.navigateTo({
         url: "/pages/detail/detail",
       });
     };
 
-    const addCart = () => {
-      console.log(1234);
+    const addCart = (id) => {
+      store.commit(ADD_CART, {
+        id,
+        cartCount: 1,
+      });
     };
     return {
       list,

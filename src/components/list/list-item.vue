@@ -7,7 +7,7 @@
       <view class="buttom-info">
         <text class="price">￥{{ itemInfo?.price }}</text>
         <!--  .stop 阻止单击事件继续传播  -->
-        <image class="img-cart" :src="cartIcon" @tap.stop="$emit('addCart')"></image>
+        <image class="img-cart" :src="cartIcon" @tap.stop="$emit('addCart', itemInfo.id)"></image>
       </view>
     </view>
   </view>
