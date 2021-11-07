@@ -2,7 +2,7 @@
   <view class="co-recom">
     <view
       class="recom-item"
-      v-for="(item, index) in recom"
+      v-for="(item, index) in recommend"
       :key="index"
       @tap="getDetail"
     >
@@ -24,40 +24,17 @@
 
 <script lang="ts">
 import Taro from "@tarojs/taro";
-const recom = [
-  {
-    imgUrl:
-      "https://www.kfzimg.com/sw/kfz-cos/kfzimg/1862627/777d8277ce729ddf_n.jpg",
-    title: "大唐西域记 1函5册",
-    phase: "全新",
-    address: "北京",
-    price: "200",
-  },
-  {
-    imgUrl: "https://www.kfzimg.com/sw/kfzimg/1586/0131eafcee6d4bddbf_n.jpg",
-    title: "大唐西域记 1函5册",
-    phase: "全新",
-    address: "北京",
-    price: "200",
-  },
-  {
-    imgUrl: "https://www.kfzimg.com/sw/kfzimg/2496/0204c4255ab0dec3f0_n.jpg",
-    title: "大唐西域记 1函5册",
-    phase: "全新",
-    address: "北京",
-    price: "200",
-  },
-  {
-    imgUrl:
-      "https://www.kfzimg.com/sw/kfz-cos/kfzimg/abadbcfb/704ca01a6cd94977_n.jpg ",
-    title: "大唐西域记 1函5册",
-    phase: "全新",
-    address: "北京",
-    price: "200",
-  },
-];
+
 export default {
   name: "recommend",
+  props: {
+    recommend: {
+      type: Array,
+      default: () => {
+        [];
+      },
+    },
+  },
   setup() {
     const getDetail = () => {
       Taro.navigateTo({
@@ -65,7 +42,6 @@ export default {
       });
     };
     return {
-      recom,
       getDetail,
     };
   },

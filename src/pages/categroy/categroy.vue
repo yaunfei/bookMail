@@ -147,7 +147,7 @@ export default {
     });
 
     const changeContent = (categoryId = 1) => {
-      let findObj: any = contentList.find((item, index) => {
+      let findObj: any = contentList.find((item, _) => {
         return item.categoryId === categoryId;
       });
       findObj ? (state.contents = [...findObj.arr]) : (state.contents = []);
