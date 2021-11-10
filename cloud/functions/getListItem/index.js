@@ -11,8 +11,28 @@ exports.main = async (event, context) => {
   const wxContext = cloud.getWXContext()
 
   const db = cloud.database()
-
-  const dbResult = await db.collection("home_result").where({ "_id": "home_info" }).get();
+  const _ = db.command
+  const $ = _.aggregate
+  let dbResult
+  try {
+    dbResult = await db.collection('book_count').aggregate()
+      .match({ count: _.gt(0) }) // 聚合函数时使用 macth 进行where 条件判断
+      .lookup({
+        from: "book_list",
+        localField: "_id",
+        foreignField: "_id",
+        as: "bookList"
+      })
+      .replaceRoot({
+        newRoot: $.mergeObjects([$.arrayElemAt(['$bookList', 0]), '$$ROOT'])
+      })
+      .project({
+        bookList: 0
+      })
+      .end();
+  } catch (e) {
+    console.log(e);
+  }
 
   return {
     event,
