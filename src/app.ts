@@ -2,13 +2,15 @@ import { createApp } from "vue";
 import { store, key } from "./store";
 import Taro from "@tarojs/taro";
 import "./app.less";
-import { DBID } from "@/service/config";
+// import { DBID } from "@/service/config";
 
 const App = createApp({
   mounted() {
+    // 小程序云函数，初始化
     if (process.env.TARO_ENV === "weapp") {
       Taro.cloud.init({
-        env: DBID,
+        // env: DBID,
+        traceUser: true,
       });
     }
   },

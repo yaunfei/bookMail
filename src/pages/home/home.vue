@@ -31,6 +31,8 @@
 </template>
 
 <script lang="ts">
+import { onMounted, reactive, toRefs } from "@vue/runtime-core";
+import request from "@/service/request";
 import homeSwiper from "@/components/home/swiper.vue";
 import optionClassfiy from "@/components/home/options-classfiy.vue";
 import optionActivity from "@/components/home/options-activity.vue";
@@ -38,9 +40,6 @@ import horizontalItem from "@/components/home/horizontal-item.vue";
 import verticalItem from "@/components/home/vertical-item.vue";
 import recommend from "@/components/home/recommend.vue";
 import subTitle from "@/components/common/sub-title.vue";
-import { onMounted, reactive, toRefs } from "@vue/runtime-core";
-import cloud from "@/service/cloud";
-import Taro from "@tarojs/taro";
 
 export default {
   name: "home",
@@ -63,26 +62,14 @@ export default {
 
     onMounted(async () => {
       try {
-        Taro.cloud.callFunction({
-          name: "getListItem",
-          data: {
-            
-          },
-        }).then(res => {
-          console.log("res", res);
-        })
-        // const res = await cloud.getHomeInfo("home_result");
-        const res = await cloud.getHomeInfo("home_result");
-        if (res.errMsg === "collection.get:ok") {
-          state.swiperImg = res.data[0]?.swiper_img;
-          state.horizontalItem = res.data[0]?.horizontal_item;
-          state.verticalItem = res.data[0]?.vertical_item;
-          state.recommend = res.data[0]?.recommend;
-        } else {
-          console.log("getHomeInfo-接口返回错误");
-        }
+        const res = await request.select("getListItem", {});
+        console.log("list", res);
+        state.swiperImg = res.swiperUrl[0].swiper_img_url;
+        state.horizontalItem = res.bookList;
+        state.verticalItem = res.bookList;
+        state.recommend = res.bookList;
       } catch (e) {
-        console.log("getHomeInfo-接口请求错误", e);
+        console.log("getListItem-接口请求错误", e);
       }
     });
 

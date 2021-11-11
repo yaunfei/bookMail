@@ -13,9 +13,10 @@ exports.main = async (event, context) => {
   const db = cloud.database()
   const _ = db.command
   const $ = _.aggregate
-  let dbResult
+  let dbResult = {};
   try {
-    dbResult = await db.collection('book_count').aggregate()
+    // 获取图书列表
+    let book = await db.collection('book_count').aggregate()
       .match({ count: _.gt(0) }) // 聚合函数时使用 macth 进行where 条件判断
       .lookup({
         from: "book_list",
@@ -30,6 +31,14 @@ exports.main = async (event, context) => {
         bookList: 0
       })
       .end();
+
+    book.errMsg === "collection.aggregate:ok" ? Object.assign(dbResult, { bookList: book.list }) : null;
+
+    // 获取轮播图信息
+    let swiper = await db.collection('swiper_img_url').where({ "_id": "swiper_img_url" }).get();
+
+    swiper.errMsg === "collection.get:ok" ? Object.assign(dbResult, { swiperUrl: swiper.data }) : null;
+
   } catch (e) {
     console.log(e);
   }
