@@ -63,7 +63,6 @@ export default {
     onMounted(async () => {
       try {
         const res = await request.select("getListItem", {});
-        console.log("list", res);
         state.swiperImg = res.swiperUrl[0].swiper_img_url;
         state.horizontalItem = res.bookList;
         state.verticalItem = res.bookList;

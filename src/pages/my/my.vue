@@ -6,7 +6,8 @@
           class="header-img"
           src="https://user.kongfz.com/data/member_pic/1897/8521897.jpg"
         />
-        <text>登录、注册</text>
+        <text @tap="handle">登录、注册</text>
+        <button open-type="getUserInfo" @getuserinfo="onGetUserInfo">登录、注册</button>
       </view>
       <view class="my-order">
         <sub-title
@@ -55,6 +56,7 @@ import commentIcon from "@/assets/order/comment.png";
 import refundIcon from "@/assets/order/refund.png";
 import localIcon from "@/assets/order/location.png";
 import { useStore } from "@/store";
+import request from "@/service/request";
 
 const orderItem = [
   {
@@ -85,15 +87,28 @@ export default {
     subTitle,
   },
   setup() {
-    const handle = () => {
-      console.log(123);
+    const handle = async () => {
+      try {
+        const res = await request.login("login", {});
+        const {openid, appid, unionid} = res;
+        console.log("123", openid);
+        console.log("123", appid);
+        console.log("123", unionid);
+      } catch (e) {
+        console.log(e);
+      }
     };
-    const store = useStore();
-    console.log("---", store.state.cartCount);
+    const onGetUserInfo = (e) => {
+      console.log('12')
+      console.log(e.detail);
+    }
+    // const store = useStore();
+    // console.log("---", store.state.cartCount);
     return {
       handle,
       localIcon,
       orderItem,
+      onGetUserInfo,
     };
   },
 };

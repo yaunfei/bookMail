@@ -11,7 +11,7 @@
       </view>
       <view class="recom-title">{{ item.title }}</view>
       <view class="recom-info clearfix">
-        <view>{{ item.phase }}</view>
+        <view>{{ item.quality }}</view>
         <view>{{ item.address }}</view>
       </view>
       <view class="recom-price">
