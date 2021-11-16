@@ -6,8 +6,10 @@
           class="header-img"
           src="https://user.kongfz.com/data/member_pic/1897/8521897.jpg"
         />
-        <text @tap="handle">登录、注册</text>
-        <button open-type="getUserInfo" @getuserinfo="onGetUserInfo">登录、注册</button>
+        <text>登录、注册</text>
+        <button open-type="getUserInfo" @getuserinfo="onGetUserInfo">
+          登录、注册
+        </button>
       </view>
       <view class="my-order">
         <sub-title
@@ -48,6 +50,9 @@
 </template>
 
 <script lang="ts">
+import Taro from "@tarojs/taro";
+// import { useStore } from "@/store";
+import request from "@/service/request";
 import subTitle from "@/components/common/sub-title.vue";
 import payIcon from "@/assets/order/pay.png";
 import goodsIcon from "@/assets/order/goods.png";
@@ -55,8 +60,6 @@ import deliverIcon from "@/assets/order/deliver.png";
 import commentIcon from "@/assets/order/comment.png";
 import refundIcon from "@/assets/order/refund.png";
 import localIcon from "@/assets/order/location.png";
-import { useStore } from "@/store";
-import request from "@/service/request";
 
 const orderItem = [
   {
@@ -87,25 +90,31 @@ export default {
     subTitle,
   },
   setup() {
-    const handle = async () => {
+    const onGetUserInfo = async (e) => {
       try {
-        const res = await request.login("login", {});
-        const {openid, appid, unionid} = res;
-        console.log("123", openid);
-        console.log("123", appid);
-        console.log("123", unionid);
+        let userInfo = {};
+        const loginInfo = await request.login("login", {});
+        const { openid, appid, unionid } = loginInfo;
+
+        Object.assign(userInfo, {
+          openid,
+          appid,
+          unionid,
+          userInfo: e.detail.userInfo,
+        });
+
+        // 保存用户信息在本地
+        Taro.setStorageSync('userInfo', userInfo);
+
+        const userInfos = Taro.getStorageSync('userInfo');
+        console.log("userInfos", userInfos);
       } catch (e) {
         console.log(e);
       }
     };
-    const onGetUserInfo = (e) => {
-      console.log('12')
-      console.log(e.detail);
-    }
     // const store = useStore();
     // console.log("---", store.state.cartCount);
     return {
-      handle,
       localIcon,
       orderItem,
       onGetUserInfo,

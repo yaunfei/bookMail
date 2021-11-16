@@ -25,6 +25,12 @@ const select = (type: string, params: object) => {
   });
 };
 
+/**
+ * 调用云函数实现登陆
+ * @param type 
+ * @param params 
+ * @returns 
+ */
 const login = (type: string, params: object) => {
   return new Promise((resolve, reject) => {
     Taro.cloud
@@ -36,7 +42,6 @@ const login = (type: string, params: object) => {
         },
       })
       .then((res: any) => {
-        console.log("res", res);
         if (res.errMsg === "cloud.callFunction:ok") {
           resolve(res.result);
         }
